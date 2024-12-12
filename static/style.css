@@ -16,6 +16,61 @@ body {
   margin: 0;
 }
 
+/* About Page Styling */
+.about-section {
+  background-color: #f9fafb;
+  margin-top: 200px;
+  padding: 3em 2em;
+  text-align: center;
+}
+
+.about-container {
+  max-width: 1600px;
+  margin-top: 10;
+  /* margin: 0 auto; */
+  background-color: #fff;
+  padding: 2em;
+  border-radius: 8px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.about-container h1 {
+  font-size: 2em;
+  color: #007bff;
+  margin-bottom: 1em;
+  text-align: left;
+}
+
+.about-container h2 {
+  font-size: 1.5em;
+  color: #333;
+  margin-top: 1.5em;
+  text-align: left;
+}
+
+.about-container p {
+  font-size: 1em;
+  color: #555;
+  line-height: 1.6;
+  margin: 1em 0;
+  text-align: left;
+}
+
+.about-container ul {
+  list-style-type: disc;
+  padding-left: 1.5em;
+  text-align: left;
+}
+
+.about-container ul li {
+  margin-bottom: 0.8em;
+  color: #555;
+}
+
+.about-container ul li strong {
+  color: #333;
+}
+
 h2 {
   color: #333;
   font-size: 1.5em;
@@ -51,7 +106,8 @@ h2 {
   color: #cce7ff;
 }
 
-.title-left, .title-right {
+.title-left,
+.title-right {
   display: flex;
   gap: 0.5em;
 }
@@ -60,7 +116,7 @@ h2 {
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 1em; 
+  padding: 1em;
   display: grid;
   grid-template-columns: 2fr 1fr;
   gap: 2em;
@@ -79,8 +135,7 @@ h2 {
   transition: all 0.3s ease;
 }
 
-
-#multiStepForm{
+#multiStepForm {
   padding: 2em;
   background-color: #fff;
   border-radius: 8px;
@@ -128,9 +183,55 @@ h2 {
   border-bottom: none;
 }
 
+/* Form styling */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+label {
+  text-align: left;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+}
+
+input:focus,
+select:focus {
+  outline: none;
+  border-color: #3498db;
+}
+
+/* Textarea styling*/
+textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+  resize: vertical;
+}
+
+textarea:focus {
+  outline: none;
+  border-color: #3498db;
+}
 
 /* Input Fields */
-input[type="text"], input[type="password"], input[type="date"] {
+input[type="text"],
+input[type="password"],
+input[type="date"] {
   width: 100%;
   padding: 0.8em;
   margin: 0.5em 0;
@@ -185,9 +286,11 @@ button[type="button"]:hover {
 }
 
 /* Step Navigation */
-  /* width: 100%; */
+/* width: 100%; */
 .step {
-  transition: opacity 0.3s ease, transform 0.3s ease;
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
 }
 
 .step.active {
@@ -284,80 +387,80 @@ div {
   left: -9999px;
 }
 
-  #slotList{
-    list-style-type: none;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 1em;
-    margin-top: 1em;
-  }
+#slotList {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  margin-top: 1em;
+}
 
-  #slotList li {
-    background-color: #f8f9fa;
-    padding: 1em;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-size: 1em;
-    color: #333;
-    transition: background-color 0.3s ease;
-  }
+#slotList li {
+  background-color: #f8f9fa;
+  padding: 1em;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 1em;
+  color: #333;
+  transition: background-color 0.3s ease;
+}
 
-  .slot-qty{
-    display: flex;
-    align-items: center;
-    gap: 0.3em;
-    font-size: 0.9em;
-  }
+.slot-qty {
+  display: flex;
+  align-items: center;
+  gap: 0.3em;
+  font-size: 0.9em;
+}
 
-  .slot-qty input[type="number"] {
-    width: 60px;
-    padding: 0.3em;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    text-align: center;
-  }
+.slot-qty input[type="number"] {
+  width: 60px;
+  padding: 0.3em;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  text-align: center;
+}
 
-  .slot-qty input[type="number"]:focus {
-    border-color: #007bff;
-    outline: none;
-  }
+.slot-qty input[type="number"]:focus {
+  border-color: #007bff;
+  outline: none;
+}
 
-  .slot-actions button:hover {
-    background-color: #0056b3;
-  }
+.slot-actions button:hover {
+  background-color: #0056b3;
+}
 
-  slotList li:hover {
-    background-color: #e9ecef;
-    transition: background-color 0.3s ease;
-  }
+slotList li:hover {
+  background-color: #e9ecef;
+  transition: background-color 0.3s ease;
+}
 
-  .slot-item {
-    font-weight: bold;
-  }
+.slot-item {
+  font-weight: bold;
+}
 
-  .slot-actions {
-    display: flex;
-    gap: 0.5em;
-  }
+.slot-actions {
+  display: flex;
+  gap: 0.5em;
+}
 
-  .slot-actions button {
-    background-color: #0056b3;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    padding: 0.3em 0.8em;
-    cursor: pointer;
-    font-size: 0.9em;
-    transition: background-color 0.3s ease;
-  }
+.slot-actions button {
+  background-color: #0056b3;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 0.3em 0.8em;
+  cursor: pointer;
+  font-size: 0.9em;
+  transition: background-color 0.3s ease;
+}
 
-  .slot-actions button:hover {
-    background-color: #0056b3;
-  }
+.slot-actions button:hover {
+  background-color: #0056b3;
+}
 
 /* Responsive Design */
 @media (max-width: 768px) {
@@ -370,8 +473,8 @@ div {
     width: 100%;
   }
 
-
-  #login-container, #multiStepForm {
+  #login-container,
+  #multiStepForm {
     padding: 1.5em;
   }
 
@@ -380,4 +483,3 @@ div {
     padding: 0.7em;
   }
 }
-

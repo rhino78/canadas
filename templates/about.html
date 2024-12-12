@@ -1,23 +1,86 @@
-
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Hospital Scheduling</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
+    <title>About Us | Hospital Scheduling</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css')}}"
+    />
   </head>
   <body>
     <!-- Title Bar -->
     <div class="title-bar">
       <div class="title-left">
-        <a href="/admin">Admin</a> | <a href="/ma">MA</a> | <a href="/patient">Patient</a>
+        <a href="/admin">Admin</a> | <a href="/ma">MA</a> |
+        <a href="/patient">Patient</a>
       </div>
       <div class="title-right">
-        <a href="/">Home</a> | <a href="/about">About</a> | <a href="/contact">Contact</a>
+        <a href="/">Home</a> | <a href="/about">About</a> |
+        <a href="/contact">Contact</a>
       </div>
     </div>
-    <p>This is the About Page</p>
+
+    <!-- About Section -->
+    <section class="about-section">
+      <div class="about-container">
+        <h1>About Us</h1>
+        <p>
+          At Canadas Hospital Scheduling, we believe that access to healthcare
+          should be seamless and efficient for everyone. Our platform was built
+          with the goal of simplifying the scheduling process, ensuring that
+          patients, medical staff, and administrators can coordinate
+          appointments effortlessly and without delay.
+        </p>
+
+        <h2>Who We Are</h2>
+        <p>
+          We are a team of passionate innovators dedicated to improving
+          healthcare operations through technology. With a focus on
+          user-friendliness and reliability, our scheduling platform bridges the
+          gap between patients and medical providers, making it easier to
+          deliver timely care.
+        </p>
+
+        <h2>What We Do</h2>
+        <ul>
+          <li>
+            <strong>Intuitive Scheduling:</strong> Empowering patients and staff
+            to select and manage appointments with ease.
+          </li>
+          <li>
+            <strong>Efficient Coordination:</strong> Streamlining communication
+            between hospitals, surgeons, and patients.
+          </li>
+          <li>
+            <strong>Reliable Accessibility:</strong> Ensuring that scheduling
+            tools are available anytime, anywhere.
+          </li>
+        </ul>
+
+        <h2>Why Choose Us</h2>
+        <ul>
+          <li>
+            <strong>Patient-Centric:</strong> Our tools prioritize the needs of
+            patients, offering flexibility and transparency.
+          </li>
+          <li>
+            <strong>Technology-Driven:</strong> We leverage innovative solutions
+            to minimize administrative burdens and enhance operational
+            efficiency.
+          </li>
+          <li>
+            <strong>Collaborative Approach:</strong> We work closely with
+            healthcare providers to tailor our platform to their unique needs.
+          </li>
+        </ul>
+
+        <p>
+          Join us in redefining how healthcare scheduling is done, and
+          experience the difference a modern, reliable platform can make.
+        </p>
+      </div>
+    </section>
   </body>
 </html>
-

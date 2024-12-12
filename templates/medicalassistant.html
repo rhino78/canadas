@@ -1,249 +1,280 @@
-
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Hospital Scheduling</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css')}}"
+    />
   </head>
+
   <body>
     <!-- Title Bar -->
     <div class="title-bar">
       <div class="title-left">
-        <a href="/admin">Admin</a> | <a href="/ma">MA</a> | <a href="/patient">Patient</a>
+        <a href="/admin">Admin</a> | <a href="/ma">MA</a> |
+        <a href="/patient">Patient</a>
       </div>
       <div class="title-right">
-        <a href="/">Home</a> | <a href="/about">About</a> | <a href="/contact">Contact</a>
+        <a href="/">Home</a> | <a href="/about">About</a> |
+        <a href="/contact">Contact</a>
       </div>
     </div>
-  <div id="login-container">
-    <h2>Medical Assistant Login</h2>
-    <form id="loginForm" onsubmit="return handleLogin(event)">
-      <label for="username">Username:</label>
-      <input type="text" id="username" name="username" required>
+    <div id="login-container">
+      <h2>Medical Assistant Login</h2>
+      <form id="loginForm" onsubmit="return handleLogin(event)">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required />
 
-      <label for="password">Password:</label>
-      <input type="password" id="password" name="password" required>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required />
 
-      <button type="submit">Login</button>
-    </form>
-    <p id="loginError" style="color: red; display: none;">Invalid login. Please try again.</p>
-  </div>
+        <button type="submit">Login</button>
+      </form>
+      <p id="loginError" style="color: red; display: none">
+        Invalid login. Please try again.
+      </p>
+    </div>
 
-  <!-- Multistep Form (Initially Hidden) -->
-  <div id="multiStepForm" style="display: none;">
-    <div class="step" id="step1">
-      <h2>Pick the surgeon</h2>
-      <div class="surgeon-selection">
-        <label for="surgeons">Choose a surgeon:</label>
-        <select name="surgeons" id="surgeons">
-          <option value="Dr. Smith">Dr. Smith</option>
-          <option value="Dr. Johnson">Dr. Johnson</option>
-          <option value="Dr. Wilson">Dr. Wilson</option>
-        </select>
+    <!-- Multistep Form (Initially Hidden) -->
+    <div id="multiStepForm" style="display: none">
+      <div class="step" id="step1">
+        <h2>Pick the surgeon</h2>
+        <div class="surgeon-selection">
+          <label for="surgeons">Choose a surgeon:</label>
+          <select name="surgeons" id="surgeons">
+            <option value="Dr. Smith">Dr. Smith</option>
+            <option value="Dr. Johnson">Dr. Johnson</option>
+            <option value="Dr. Wilson">Dr. Wilson</option>
+          </select>
+        </div>
+        <button type="submit" onclick="nextStep()">Next</button>
       </div>
-      <button type="submit" onclick="nextStep()">Next</button>
+      <div class="step" id="step2" style="display: none">
+        <h2 id="templateStep">Available Dates for Appointment for</h2>
+        <input type="date" id="surgeryDate" required />
+        <button type="submit" onclick="nextStep()">Next</button>
+      </div>
+      <div class="step" id="step3" style="display: none">
+        <p>Choose Your Surgery.</p>
+        <input type="radio" id="surgery1" name="surgery" value="BMT" />
+        <label for="surgery1">BMT - 30 Min</label><br />
+        <input type="radio" id="surgery2" name="surgery" value="TA" />
+        <label for="surgery2">T+A - 45 Min</label><br />
+        <input type="radio" id="surgery3" name="surgery" value="BMTAD" />
+        <label for="surgery3">BMT, Adenoids - 45 Min</label><br />
+        <input type="radio" id="surgery4" name="surgery" value="TAAD" />
+        <label for="surgery4">T+A, Adenoids - 60 Min</label><br />
+        <button type="submit" onclick="nextStep()">Next</button>
+      </div>
+      <div class="step" id="step4" style="display: none">
+        <h2 id="youSelected">You've selected</h2>
+        <button type="submit" onclick="nextStep()">Next</button>
+      </div>
+      <div class="step" id="step5" style="display: none">
+        <h2>Text Message Preview</h2>
+        <p id="messagePreview"></p>
+        <button type="submit" onclick="nextStep()">Ok To Send?</button>
+      </div>
+      <div class="step" id="step6" style="display: none">
+        <h2>Please enter patient cell phone number</h2>
+        <label for="phone">Enter a phone number:</label><br /><br />
+        <input
+          type="tel"
+          id="phone"
+          name="phone"
+          placeholder="123-45-678"
+          pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
+          required
+        /><br /><br />
+        <small>Format: 123-45-678</small><br /><br />
+        <button type="submit" onclick="nextStep()">Send</button>
+      </div>
+      <div class="step" id="step7" style="display: none">
+        <h2>Your message has been sent!</h2>
+      </div>
     </div>
-    <div class="step" id="step2" style="display:none;">
-      <h2 id="templateStep">Available Dates for Appointment for </h2>
-      <input type="date" id="surgeryDate" required>
-      <button type="submit" onclick="nextStep()">Next</button>
+
+    <div id="selectedDatesContainer" class="hiddenDates">
+      <div>
+        <h3>Selected Dates</h3>
+        <ul id="dateList"></ul>
+      </div>
     </div>
-    <div class="step" id="step3" style="display:none;">
-      <p>Choose Your Surgery.</p>
-      <input type="radio" id="surgery1" name="surgery" value="BMT">
-      <label for="surgery1">BMT - 30 Min</label><br>
-      <input type="radio" id="surgery2" name="surgery" value="TA">
-      <label for="surgery2">T+A - 45 Min</label><br>
-      <input type="radio" id="surgery3" name="surgery" value="BMTAD">
-      <label for="surgery3">BMT, Adenoids - 45 Min</label><br>
-      <input type="radio" id="surgery4" name="surgery" value="TAAD">
-      <label for="surgery4">T+A, Adenoids - 60 Min</label><br>
-      <button type="submit" onclick="nextStep()">Next</button>
-    </div>
-    <div class="step" id="step4" style="display:none;">
-      <h2 id="youSelected">You've selected</h2>
-      <button type="submit" onclick="nextStep()">Next</button>
-    </div>
-    <div class="step" id="step5" style="display:none;">
-      <h2>Text Message Preview</h2>
-      <p id="messagePreview"></p>
-      <button type="submit" onclick="nextStep()">Ok To Send?</button>
-    </div>
-    <div class="step" id="step6" style="display:none;">
-      <h2>Please enter patient cell phone number</h2>
-      <label for="phone">Enter a phone number:</label><br><br>
-      <input type="tel" id="phone" name="phone" placeholder="123-45-678" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" required><br><br>
-      <small>Format: 123-45-678</small><br><br>
-      <button type="submit" onclick="nextStep()">Send</button>
-    </div>
-    <div class="step" id="step7" style="display:none;">
-      <h2>Your message has been sent!</h2>
-    </div>
-  </div>
 
-  <div id="selectedDatesContainer" class="hiddenDates">
-    <div>
-      <h3>Selected Dates</h3>
-      <ul id="dateList"></ul>
-    </div>
-  </div>
+    <script>
+      function addDateToList() {
+        dateCount += 1;
+        const selectedDate = document.getElementById("surgeryDate").value;
+        const dateContainer = document.getElementById("selectedDatesContainer");
+        dateContainer.classList.remove("hiddenDates");
+        dateContainer.classList.add("visibleDates");
 
-  <script>
-    function addDateToList() {
-      dateCount += 1;
-      const selectedDate = document.getElementById("surgeryDate").value;
-      const dateContainer = document.getElementById("selectedDatesContainer");
-      dateContainer.classList.remove("hiddenDates");
-      dateContainer.classList.add("visibleDates");
+        if (selectedDate) {
+          const li = document.createElement("li");
+          const sp = document.createElement("span");
+          //todo add hidden css to the 2 divs
+          const divQty = document.createElement("div");
+          const divActions = document.createElement("div");
+          const label = document.createElement("label");
+          const input = document.createElement("input");
+          const onClickbutton = document.createElement("button");
+          const removeButton = document.createElement("button");
 
-      if (selectedDate){
-        const li = document.createElement("li");
-        const sp = document.createElement("span");
-        //todo add hidden css to the 2 divs
-        const divQty = document.createElement("div");
-        const divActions = document.createElement("div");
-        const label = document.createElement("label");
-        const input = document.createElement("input");
-        const onClickbutton = document.createElement("button");
-        const removeButton = document.createElement("button");
+          sp.textContent = selectedDate;
+          sp.classList.add("slot-item");
+          divQty.classList.add("slot-qty");
+          divQty.id = "slot-qty" + dateCount;
+          label.textContent = "Qty:";
+          label.setAttribute("for", "qty");
+          input.type = "number";
+          input.id = "qty";
+          input.name = "qty";
+          input.min = "0";
+          input.max = "10";
+          input.value = "1";
+          divActions.classList.add("slot-actions");
+          divActions.id = "slot-actions" + dateCount;
+          onClickbutton.textContent = "Update";
+          onClickbutton.classList.add("slot-actions");
+          onClickbutton.setAttribute("onClick", "updateQty(this)");
+          removeButton.textContent = "Remove";
+          removeButton.classList.add("slot-actions");
 
-        sp.textContent = selectedDate;
-        sp.classList.add("slot-item");
-        divQty.classList.add("slot-qty");
-        divQty.id = "slot-qty" + dateCount;
-        label.textContent = "Qty:";
-        label.setAttribute("for", "qty");
-        input.type = "number";
-        input.id = "qty";
-        input.name = "qty";
-        input.min = "0";
-        input.max = "10";
-        input.value = "1";
-        divActions.classList.add("slot-actions");
-        divActions.id = "slot-actions" + dateCount;
-        onClickbutton.textContent = "Update";
-        onClickbutton.classList.add("slot-actions");
-        onClickbutton.setAttribute("onClick", "updateQty(this)");
-        removeButton.textContent = "Remove";
-        removeButton.classList.add("slot-actions");
+          li.appendChild(sp);
+          li.appendChild(divQty);
+          divQty.appendChild(label);
+          divQty.appendChild(input);
+          li.appendChild(divActions);
+          divActions.appendChild(onClickbutton);
+          divActions.appendChild(removeButton);
 
-        li.appendChild(sp);
-        li.appendChild(divQty);
-        divQty.appendChild(label);
-        divQty.appendChild(input);
-        li.appendChild(divActions);
-        divActions.appendChild(onClickbutton);
-        divActions.appendChild(removeButton);
-
-        document.getElementById("dateList").appendChild(li);
-        document.getElementById("surgeryDate").value = "";
-        document.getElementById("slot-qty" + dateCount).style.display = "none";
-        document.getElementById("slot-actions" + dateCount).style.display = "none";
-      } else {
-        alert("Please select a date");
-      }
-    }
-
-    function handleLogin(event) {
-      event.preventDefault();
-
-      const username = document.getElementById("username").value;
-      const password = document.getElementById("password").value;
-
-      if (username === "a" && password === "f") {
-        // Hide login form and show multistep form
-        document.getElementById("login-container").style.display = "none";
-        document.getElementById("multiStepForm").style.display = "block";
-      } else {
-        // Show error message
-        document.getElementById("loginError").style.display = "block";
-      }
-    }
-
-    let currentStep = 1;
-    let dateCount = 0;
-    let drName = "";
-    let dateSelected = "";
-    let surgerySelected = "";
-
-    function copyItems() {
-      const sourceList = document.getElementById("dateList");
-      const targetList = document.getElementById("slotList");
-
-      // Clone the list items
-      const clonedItems = Array.from(sourceList.children).map(item => item.cloneNode(true));
-
-      // Append cloned items to the target list
-      clonedItems.forEach(item => targetList.appendChild(item));
-    }
-
-    //the purpose of this function is to add the text to the outgoing text box
-    function outGoingText() {
-      drName = document.getElementById("surgeons").value;
-      document.getElementById("templateStep").innerHTML = "Available Templates for :" +drName;
-
-      if (currentStep === 3) {
-        surgerySelected = document.querySelector('input[name="surgery"]:checked').value;
-        dateSelected = document.getElementById("surgeryDate").value;
-        document.getElementById("youSelected").innerHTML = "You've selected " +drName+ " on " +dateSelected+ " for " +surgerySelected;
-      }
-      //now we handle step 4 messagePreview
-      if (currentStep === 4) {
-        document.getElementById("messagePreview").innerHTML = "Your Doctors has determind your child needs surgery. Please check the date HERE: ";
-      }
-    }
-
-    function showStep(step) {
-      document.querySelectorAll('.step').forEach((el, index) => {
-        el.style.display = (index === step -1) ? 'block' : 'none';
-      });
-
-      currentStep = step;
-    }
-
-    function updateQty(button){
-      const listItem = button.closest('li');
-      const qtyInput = listItem.querySelector('input[name="qty"]');
-      const quantity = qtyInput.value;
-
-      if (quantity > 0) {
-        alert('Quantity udpated to: ' + quantity);
-      } else {
-        alert('Quantity must be greater than 0');
-      }
-    }
-
-    function nextStep() {
-      //always hide
-      console.log(currentStep);
-      const dateContainer = document.getElementById("selectedDatesContainer");
-      dateContainer.classList.remove("visibleDates");
-      dateContainer.classList.add("hiddenDates");
-
-      if(currentStep === 2) {
-        while (dateCount > 0) {
-        document.getElementById("slot-qty" + dateCount).style.display = "flex";
-        document.getElementById("slot-actions" + dateCount).style.display = "flex";
-        dateCount -=1;
+          document.getElementById("dateList").appendChild(li);
+          document.getElementById("surgeryDate").value = "";
+          document.getElementById("slot-qty" + dateCount).style.display =
+            "none";
+          document.getElementById("slot-actions" + dateCount).style.display =
+            "none";
+        } else {
+          alert("Please select a date");
         }
       }
 
-      copyItems();
-      outGoingText();
+      function handleLogin(event) {
+        event.preventDefault();
 
-      document.getElementById('step' + currentStep).style.display = 'none';
-      currentStep += 1;
-      document.getElementById('step' + currentStep).style.display = 'block';
-    }
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
 
-    function prevStep() {
-      document.getElementById('step' + currentStep).style.display = 'none';
-      currentStep -= 1;
-      document.getElementById('step' + currentStep).style.display = 'block';
-    }
-  </script>
+        if (username === "a" && password === "f") {
+          // Hide login form and show multistep form
+          document.getElementById("login-container").style.display = "none";
+          document.getElementById("multiStepForm").style.display = "block";
+        } else {
+          // Show error message
+          document.getElementById("loginError").style.display = "block";
+        }
+      }
+
+      let currentStep = 1;
+      let dateCount = 0;
+      let drName = "";
+      let dateSelected = "";
+      let surgerySelected = "";
+
+      function copyItems() {
+        const sourceList = document.getElementById("dateList");
+        const targetList = document.getElementById("slotList");
+
+        // Clone the list items
+        const clonedItems = Array.from(sourceList.children).map((item) =>
+          item.cloneNode(true),
+        );
+
+        // Append cloned items to the target list
+        clonedItems.forEach((item) => targetList.appendChild(item));
+      }
+
+      //the purpose of this function is to add the text to the outgoing text box
+      function outGoingText() {
+        drName = document.getElementById("surgeons").value;
+        document.getElementById("templateStep").innerHTML =
+          "Available Templates for :" + drName;
+
+        if (currentStep === 3) {
+          surgerySelected = document.querySelector(
+            'input[name="surgery"]:checked',
+          ).value;
+          dateSelected = document.getElementById("surgeryDate").value;
+          document.getElementById("youSelected").innerHTML =
+            "You've selected " +
+            drName +
+            " on " +
+            dateSelected +
+            " for " +
+            surgerySelected;
+        }
+        //now we handle step 4 messagePreview
+        if (currentStep === 4) {
+          document.getElementById("messagePreview").innerHTML =
+            "Your Doctors has determined your child needs" +
+            surgeryType +
+            " surgery. Please check the date HERE: ";
+        }
+      }
+
+      function showStep(step) {
+        document.querySelectorAll(".step").forEach((el, index) => {
+          el.style.display = index === step - 1 ? "block" : "none";
+        });
+
+        currentStep = step;
+      }
+
+      function updateQty(button) {
+        const listItem = button.closest("li");
+        const qtyInput = listItem.querySelector('input[name="qty"]');
+        const quantity = qtyInput.value;
+
+        if (quantity > 0) {
+          alert("Quantity udpated to: " + quantity);
+        } else {
+          alert("Quantity must be greater than 0");
+        }
+      }
+
+      function nextStep() {
+        //always hide
+        console.log(currentStep);
+        const dateContainer = document.getElementById("selectedDatesContainer");
+        dateContainer.classList.remove("visibleDates");
+        dateContainer.classList.add("hiddenDates");
+
+        if (currentStep === 2) {
+          while (dateCount > 0) {
+            document.getElementById("slot-qty" + dateCount).style.display =
+              "flex";
+            document.getElementById("slot-actions" + dateCount).style.display =
+              "flex";
+            dateCount -= 1;
+          }
+        }
+
+        copyItems();
+        outGoingText();
+
+        document.getElementById("step" + currentStep).style.display = "none";
+        currentStep += 1;
+        document.getElementById("step" + currentStep).style.display = "block";
+      }
+
+      function prevStep() {
+        document.getElementById("step" + currentStep).style.display = "none";
+        currentStep -= 1;
+        document.getElementById("step" + currentStep).style.display = "block";
+      }
+    </script>
   </body>
 </html>
-

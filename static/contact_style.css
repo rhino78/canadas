@@ -2,389 +2,398 @@
 
 /* Global styles */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f7f6;
-    color: #333;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+  font-family: Arial, sans-serif;
+  background-color: #f4f7f6;
+  color: #333;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
 /* Logo Styling*/
 .logo-container {
-    display: flex;
-    align-items: center;
-    margin-right: 15px;
+  display: flex;
+  align-items: center;
+  margin-right: 15px;
 }
 
 .topheader {
-    padding: 12px;
+  padding: 12px;
 }
 
 .rigthaligned {
-    float: right;
+  float: right;
 }
 
-
 .logoleft {
-    float: left;
+  float: left;
 }
 
 .logo {
-    margin-right: auto;
-    margin-left: auto;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 .image-text-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;    
-    padding: 20px;
-    margin-top: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  margin-top: 50px;
 }
 
 .image-text-container img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 8px;
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
 }
 .text-block {
-    max-width: 45;
-    padding-left: 20px;  
+  max-width: 45;
+  padding-left: 20px;
 }
 
 .text-block h2 {
-    font-size: 28px;
-    color: #333;
-    margin-bottom: 10px;
+  font-size: 28px;
+  color: #333;
+  margin-bottom: 10px;
 }
 
 .text-block p {
-    font-size: 16px;;
-    color: #555;
-    line-height: 1.5;
+  font-size: 16px;
+  color: #555;
+  line-height: 1.5;
 }
-
 
 /* Textarea styling*/
 textarea {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    font-size: 16px;
-    transition: border-color 0.3s ease;
-    resize: vertical;
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+  resize: vertical;
 }
 
 textarea:focus {
-    outline: none;
-    border-color: #3498db;
+  outline: none;
+  border-color: #3498db;
 }
 
 /* Container styling */
 .container {
-    background-color: #fff;
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    padding: 30px;
-    max-width: 500px;
-    width: 90%;
-    text-align: center;
-    margin-top: 80px;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  max-width: 500px;
+  width: 90%;
+  text-align: center;
+  margin-top: 80px;
 }
 
 /* Header styling */
 h1 {
-    color: #2c3e50;
-    margin-bottom: 20px;
-    text-align: center;
+  color: #2c3e50;
+  margin-bottom: 20px;
+  text-align: center;
 }
 
 /* h1 stylign for about page*/
 .ourclass {
-    text-align: center;
+  text-align: center;
 }
 
 /* Form styling */
 form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
 label {
-    text-align: left;
-    font-weight: bold;
-    margin-bottom: 5px;
+  text-align: left;
+  font-weight: bold;
+  margin-bottom: 5px;
 }
 
 input,
 select {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    font-size: 16px;
-    transition: border-color 0.3s ease;
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
 }
 
 input:focus,
 select:focus {
-    outline: none;
-    border-color: #3498db;
+  outline: none;
+  border-color: #3498db;
 }
 
 /* Button styling */
 button {
-    background-color: #3498db;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    padding: 12px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 button:hover {
-    background-color: #2980b9;
+  background-color: #2980b9;
 }
 
 /* Confirmation page styling */
 p {
-    font-size: 18px;
-    color: #000000;
+  font-size: 18px;
+  color: #000000;
 }
 
-/* Title bar styling */
+/* Title Bar Styling */
 .title-bar {
-    background-color: #3498db;
-    color: white;
-    padding: 15px 30px 15px 30px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    flex-wrap: wrap;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1em 2em;
+  background-color: #007bff;
+  color: #fff;
+  font-size: 1.1em;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
 }
 
-.title-bar h1 {
-    font-size: 24px;
-    margin: 0;
-    flex: 1 1 auto;
+.title-bar a {
+  color: #fff;
+  text-decoration: none;
+  margin: 0 0.5em;
+  transition: color 0.3s ease;
+}
+
+.title-bar a:hover {
+  color: #cce7ff;
+}
+
+.title-left,
+.title-right {
+  display: flex;
+  gap: 0.5em;
 }
 
 .nav-links {
-    display: flex;
-    padding: 15px 50px 15px 30px;
-    gap: 15px;
-    flex: 1 1 auto;
-    justify-content: flex-end;
-    flex-wrap: wrap;
+  display: flex;
+  padding: 15px 50px 15px 30px;
+  gap: 15px;
+  flex: 1 1 auto;
+  justify-content: flex-end;
+  flex-wrap: wrap;
 }
 
 .nav-links a {
-    color: white;
-    text-decoration: none;
-    font-size: 16px;
-    transition: color 0.3s ease;
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  transition: color 0.3s ease;
 }
 
 .nav-links a:hover {
-    color: #ecf0f1;
+  color: #ecf0f1;
 }
 
 * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    font-family: "Poppins", sans-serif;
-    color: #333;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  color: #333;
 }
 
 body {
-    background: white;
-    padding-top: 50px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-height: 100dvh;
-    overflow: hidden;
+  background: white;
+  padding-top: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100dvh;
+  overflow: hidden;
 }
 
 .date-input {
-    padding: 10px;
-    font-size: 1rem;
-    border-radius: 5px;
-    border: 1px solid #eee;
+  padding: 10px;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: 1px solid #eee;
 }
 
 /* datepicker styles */
 
 .datepicker-container {
-    position: relative;
+  position: relative;
 }
 
 .datepicker {
-    position: absolute;
-    top: 100%;
-    z-index: 100;
-    margin-top: 2px;
-    background: #fff;
-    padding: 10px;
-    border-radius: 5px;
+  position: absolute;
+  top: 100%;
+  z-index: 100;
+  margin-top: 2px;
+  background: #fff;
+  padding: 10px;
+  border-radius: 5px;
 }
 
 .datepicker button {
-    cursor: pointer;
-    border: none;
-    border-radius: 3px;
-    background: transparent;
-    font-size: 14px;
-    font-weight: 500;
-    text-transform: uppercase;
-    transition: 0.3s;
-    touch-action: manipulation;
+  cursor: pointer;
+  border: none;
+  border-radius: 3px;
+  background: transparent;
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: uppercase;
+  transition: 0.3s;
+  touch-action: manipulation;
 }
 
 .days,
 .dates {
-    display: grid;
-    grid-template-columns: repeat(7, 32px);
-    gap: 10px;
-    margin-block: 10px;
+  display: grid;
+  grid-template-columns: repeat(7, 32px);
+  gap: 10px;
+  margin-block: 10px;
 }
 
 .days span {
-    font-size: 14px;
-    font-weight: 600;
-    text-transform: uppercase;
-    text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  text-align: center;
 }
 
 .dates button {
-    color: slategray;
-    aspect-ratio: 1;
+  color: slategray;
+  aspect-ratio: 1;
 }
 
 .dates button:disabled {
-    opacity: 0.5;
-    pointer-events: none;
-    user-select: none;
+  opacity: 0.5;
+  pointer-events: none;
+  user-select: none;
 }
 
 .dates button:hover {
-    background: rgba(119, 136, 153, 0.1);
+  background: rgba(119, 136, 153, 0.1);
 }
 
 .dates button.today {
-    background: rgba(147, 112, 216, 0.2);
-    color: mediumblue;
+  background: rgba(147, 112, 216, 0.2);
+  color: mediumblue;
 }
 
 .dates button.selected {
-    background: #3498db;
-    color: #fff;
+  background: #3498db;
+  color: #fff;
 }
 
 .datepicker-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding-bottom: 10px;
-    border-bottom: 1px solid #eee;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
 }
 
 .datepicker-header select,
 .datepicker-header input {
-    font-size: 14px;
-    border: 1px solid #eee;
+  font-size: 14px;
+  border: 1px solid #eee;
 }
 
 .datepicker-header input {
-    max-width: 64px;
+  max-width: 64px;
 }
 
 .datepicker-header button {
-    color: slategray;
+  color: slategray;
 }
 
 .datepicker-header button:hover {
-    color: #3498db;
+  color: #3498db;
 }
 
 .datepicker-footer {
-    display: flex;
-    justify-content: flex-end;
-    gap: 10px;
-    padding-top: 10px;
-    border-top: 1px solid #eee;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding-top: 10px;
+  border-top: 1px solid #eee;
 }
 
 .datepicker-footer button {
-    background: rgba(119, 136, 153, 0.1);
-    padding: 3px 10px;
+  background: rgba(119, 136, 153, 0.1);
+  padding: 3px 10px;
 }
 
 .datepicker-footer button.cancel {
-    background: #3498db;
-    color: #fff;
+  background: #3498db;
+  color: #fff;
 }
 
 .datepicker-footer button.apply {
-    background: #3498db;
-    color: #fff;
+  background: #3498db;
+  color: #fff;
 }
 /*/ datepicker styles */
 
 /* Responsive Design */
 @media (max-width: 600px) {
-    .title-bar {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 15px;
-    }
+  .title-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 15px;
+  }
 
-    .image-text-container img,
-    .text-block {
-        max-width: 100%;
-    }
+  .image-text-container img,
+  .text-block {
+    max-width: 100%;
+  }
 
-    .nav-links {
-        justify-content: flex-start;
-        width: 100%;
-        gap: 10px;
-    }
+  .nav-links {
+    justify-content: flex-start;
+    width: 100%;
+    gap: 10px;
+  }
 
-    .title-bar h1 {
-        font-size: 20x;
-        margin-bottom: 10px;
-    }
+  .title-bar h1 {
+    font-size: 20x;
+    margin-bottom: 10px;
+  }
 
-    .nav-links a {
-        font-size: 14px;
-    }
+  .nav-links a {
+    font-size: 14px;
+  }
 
-    .container {
-        padding: 20px;
-    }
+  .container {
+    padding: 20px;
+  }
 
-    h1 {
-        font-size: 24px;
-    }
+  h1 {
+    font-size: 24px;
+  }
 
-    input,
-    select,
-    button {
-        font-size: 14px;
-    }
+  input,
+  select,
+  button {
+    font-size: 14px;
+  }
 }
