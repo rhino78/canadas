@@ -1,241 +1,95 @@
-
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Hospital Scheduling</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
-  </head>
-  <body>
-    <!-- Title Bar -->
-    <div class="title-bar">
-      <div class="title-left">
-        <a href="/admin">Admin</a> | <a href="/ma">MA</a> | <a href="/patient">Patient</a>
-      </div>
-      <div class="title-right">
-        <a href="/">Home</a> | <a href="/about">About</a> | <a href="/contact">Contact</a>
-      </div>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Patient Form | Hospital Scheduling</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <!-- Title Bar -->
+  <div class="title-bar">
+    <div class="title-left">
+      <a href="/admin">Admin</a> | <a href="/ma">MA</a> | <a href="/patient">Patient</a>
     </div>
-  <div id="login-container">
-    <h2>Patient Login</h2>
-    <form id="loginForm" onsubmit="return handleLogin(event)">
-      <label for="username">Username:</label>
-      <input type="text" id="username" name="username" required>
+    <div class="title-right">
+      <a href="/">Home</a> | <a href="/about">About</a> | <a href="/contact">Contact</a>
+    </div>
+  </div>
 
-      <label for="password">Password:</label>
-      <input type="password" id="password" name="password" required>
+  <!-- Multistep Form -->
+  <div class="container">
+    <form id="patientForm">
+      <!-- Step 1 -->
+      <div class="step active" id="step1">
+        <h2>Your Child's Name</h2>
+        <label for="childFirst">First Name:</label>
+        <input type="text" id="childFirst" name="childFirst" required>
+        <label for="childLast">Last Name:</label>
+        <input type="text" id="childLast" name="childLast" required>
+        <button type="button" onclick="nextStep()">Next</button>
+      </div>
 
-      <button type="submit">Login</button>
+      <!-- Step 2 -->
+      <div class="step" id="step2">
+        <h2>Your Name</h2>
+        <label for="parentFirst">First Name:</label>
+        <input type="text" id="parentFirst" name="parentFirst" required>
+        <label for="parentLast">Last Name:</label>
+        <input type="text" id="parentLast" name="parentLast" required>
+        <label for="phone">Your Phone #:</label>
+        <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" placeholder="1234567890" required>
+        <label for="email">Your Email:</label>
+        <input type="email" id="email" name="email" required>
+        <label for="surgeryDate">Please select a date for the surgery:</label>
+        <input type="date" id="surgeryDate" name="surgeryDate" required>
+        <button type="button" onclick="nextStep()">Next</button>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="step" id="step3">
+        <h2>Thank You!</h2>
+        <p>You have chosen <span id="chosenDate"></span></p>
+        <button type="button" onclick="nextStep()">Next</button>
+      </div>
+
+      <!-- Step 4 -->
+      <div class="step" id="step4">
+        <h2>Great!</h2>
+        <p>Your child is confirmed for surgery with Dr. X on <span id="finalDate"></span>.</p>
+        <p>More details on location and time will be sent closer to the date.</p>
+        <p>A confirmation email has been sent to you.</p>
+      </div>
     </form>
-    <p id="loginError" style="color: red; display: none;">Invalid login. Please try again.</p>
-  </div>
-
-  <!-- Multistep Form (Initially Hidden) -->
-  <div id="multiStepForm" style="display: none;">
-    <div class="step" id="step1">
-      <h2>Select Area</h2>
-      <div class="radio-group">
-      <label><input type="radio" name="area" value="ENT" required> ENT</label>
-      <label><input type="radio" name="area" value="Urology"> Urology</label>
-      <label><input type="radio" name="area" value="Plastic Surgery"> Plastic Surgery</label>
-      <label><input type="radio" name="area" value="Pulmonology"> Pulmonology</label>
-      </div>
-      <button type="submit" onclick="nextStep()">Next</button>
-    </div>
-    <div class="step" id="step2" style="display:none;">
-      <h2>Select Dates</h2>
-      <input type="date" id="surgeryDate" required>
-      <button type="button" onclick="addDateToList()">Add Date to List</button>
-      <button type="submit" onclick="nextStep()">Submit</button>
-    </div>
-    <div class="step" id="step3" style="display:none;">
-      <h2>How many available spots for each date?</h2>
-      <ul id="slotList">
-      </ul>
-      <button type="submit" onclick="nextStep()">Next</button>
-    </div>
-    <div class="step" id="step4" style="display:none;">
-      <h2>Pick the surgeon</h2>
-      <div class="surgeon-selection">
-        <label for="surgeons">Choose a surgeon:</label>
-        <select name="surgeons" id="surgeons">
-          <option value="Dr. Smith">Dr. Smith</option>
-          <option value="Dr. Johnson">Dr. Johnson</option>
-          <option value="Dr. Wilson">Dr. Wilson</option>
-        </select>
-      </div>
-      <button type="submit" onclick="nextStep()">Next</button>
-    </div>
-    <div class="step" id="step5" style="display:none;">
-      <h2>Outgoing text Preview</h2>
-      <p id="outgoingText"></p>
-      <p>Is this Approved to send?</p></p>
-      <div>
-        <label>
-          <input type="radio" name="choice-radio">
-          Yes
-        </label>
-        <label>
-          <input type="radio" name="choice-radio">
-          No
-        </label>
-      </div>
-      <button type="submit" onclick="nextStep()">Next</button>
-    </div>
-    <div class="step" id="step6" style="display:none;">
-      <p>Thank you for scheduling an appointment with us. We will contact you shortly.</p>
-    </div>
-  </div>
-
-  <div id="selectedDatesContainer" class="hiddenDates">
-    <div>
-      <h3>Selected Dates</h3>
-      <ul id="dateList"></ul>
-    </div>
   </div>
 
   <script>
-    function addDateToList() {
-      dateCount += 1;
-      const selectedDate = document.getElementById("surgeryDate").value;
-      const dateContainer = document.getElementById("selectedDatesContainer");
-      dateContainer.classList.remove("hiddenDates");
-      dateContainer.classList.add("visibleDates");
-
-      if (selectedDate){
-        const li = document.createElement("li");
-        const sp = document.createElement("span");
-        //todo add hidden css to the 2 divs
-        const divQty = document.createElement("div");
-        const divActions = document.createElement("div");
-        const label = document.createElement("label");
-        const input = document.createElement("input");
-        const onClickbutton = document.createElement("button");
-        const removeButton = document.createElement("button");
-
-        sp.textContent = selectedDate;
-        sp.classList.add("slot-item");
-        divQty.classList.add("slot-qty");
-        divQty.id = "slot-qty" + dateCount;
-        label.textContent = "Qty:";
-        label.setAttribute("for", "qty");
-        input.type = "number";
-        input.id = "qty";
-        input.name = "qty";
-        input.min = "0";
-        input.max = "10";
-        input.value = "1";
-        divActions.classList.add("slot-actions");
-        divActions.id = "slot-actions" + dateCount;
-        onClickbutton.textContent = "Update";
-        onClickbutton.classList.add("slot-actions");
-        onClickbutton.setAttribute("onClick", "updateQty(this)");
-        removeButton.textContent = "Remove";
-        removeButton.classList.add("slot-actions");
-
-        li.appendChild(sp);
-        li.appendChild(divQty);
-        divQty.appendChild(label);
-        divQty.appendChild(input);
-        li.appendChild(divActions);
-        divActions.appendChild(onClickbutton);
-        divActions.appendChild(removeButton);
-
-        document.getElementById("dateList").appendChild(li);
-        document.getElementById("surgeryDate").value = "";
-        document.getElementById("slot-qty" + dateCount).style.display = "none";
-        document.getElementById("slot-actions" + dateCount).style.display = "none";
-      } else {
-        alert("Please select a date");
-      }
-    }
-
-    function handleLogin(event) {
-      event.preventDefault();
-
-      const username = document.getElementById("username").value;
-      const password = document.getElementById("password").value;
-
-      if (username === "a" && password === "f") {
-        // Hide login form and show multistep form
-        document.getElementById("login-container").style.display = "none";
-        document.getElementById("multiStepForm").style.display = "block";
-      } else {
-        // Show error message
-        document.getElementById("loginError").style.display = "block";
-      }
-    }
-
     let currentStep = 1;
-    let dateCount = 0;
-    let drName = "";
-
-    function copyItems() {
-      const sourceList = document.getElementById("dateList");
-      const targetList = document.getElementById("slotList");
-
-      // Clone the list items
-      const clonedItems = Array.from(sourceList.children).map(item => item.cloneNode(true));
-
-      // Append cloned items to the target list
-      clonedItems.forEach(item => targetList.appendChild(item));
-    }
-
-    //the purpose of this function is to add the text to the outgoing text box
-    function outGoingText() {
-      drName = document.getElementById("surgeons").value;
-      document.getElementById("outgoingText").innerHTML = "Your Doctor:  " +drName+ " has determined your child needs srurgery. Please click on the link below to choose a date. ";
-    }
-
-    function showStep(step) {
-      document.querySelectorAll('.step').forEach((el, index) => {
-        el.style.display = (index === step -1) ? 'block' : 'none';
-      });
-
-      currentStep = step;
-    }
-
-    function updateQty(button){
-      const listItem = button.closest('li');
-      const qtyInput = listItem.querySelector('input[name="qty"]');
-      const quantity = qtyInput.value;
-
-      if (quantity > 0) {
-        alert('Quantity udpated to: ' + quantity);
-      } else {
-        alert('Quantity must be greater than 0');
-      }
-    }
 
     function nextStep() {
-      //always hide
-      console.log(currentStep);
-      const dateContainer = document.getElementById("selectedDatesContainer");
-      dateContainer.classList.remove("visibleDates");
-      dateContainer.classList.add("hiddenDates");
+      // Hide current step
+      document.getElementById('step' + currentStep).classList.remove('active');
+      document.getElementById('step' + currentStep).style.display = 'none';
+      
+      // Increment step
+      currentStep += 1;
 
-      if(currentStep === 2) {
-        while (dateCount > 0) {
-        document.getElementById("slot-qty" + dateCount).style.display = "flex";
-        document.getElementById("slot-actions" + dateCount).style.display = "flex";
-        dateCount -=1;
-        }
+      // Update dynamic content
+      if (currentStep === 3) {
+        const date = document.getElementById('surgeryDate').value;
+        document.getElementById('chosenDate').textContent = date;
       }
 
-      copyItems();
-      outGoingText();
-      document.getElementById('step' + currentStep).style.display = 'none';
-      currentStep += 1;
-      document.getElementById('step' + currentStep).style.display = 'block';
-    }
+      if (currentStep === 4) {
+        const date = document.getElementById('surgeryDate').value;
+        document.getElementById('finalDate').textContent = date;
+      }
 
-    function prevStep() {
-      document.getElementById('step' + currentStep).style.display = 'none';
-      currentStep -= 1;
-      document.getElementById('step' + currentStep).style.display = 'block';
+      // Show next step
+      const next = document.getElementById('step' + currentStep);
+      next.classList.add('active');
+      next.style.display = 'block';
     }
   </script>
-  </body>
+</body>
 </html>
-

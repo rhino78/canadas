@@ -1,22 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Hospital Scheduling</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
-  </head>
-  <body>
-    <!-- Title Bar -->
-    <div class="title-bar">
-      <div class="title-left">
-        <a href="/admin">Admin</a> | <a href="/ma">MA</a> | <a href="/patient">Patient</a>
-      </div>
-      <div class="title-right">
-        <a href="/">Home</a> | <a href="/about">About</a> | <a href="/contact">Contact</a>
-      </div>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hospital Scheduling</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <!-- Title Bar -->
+  <div class="title-bar">
+    <div class="title-left">
+      <a href="/admin">Admin</a> | <a href="/ma">MA</a> | <a href="/patient">Patient</a>
     </div>
-    <p>Welcome to Hospital Scheduling</p>
-  </body>
-</html>
+    <div class="title-right">
+      <a href="/">Home</a> | <a href="/about">About</a> | <a href="/contact">Contact</a>
+    </div>
+  </div>
 
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Welcome to Hospital Scheduling</h1>
+      <p>Streamline the way you manage appointments and improve patient care with our intuitive scheduling platform.</p>
+      <a href="/patient" class="btn-primary">Get Started</a>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features">
+    <div class="feature">
+      <h2>Effortless Scheduling</h2>
+      <p>Empower patients and staff to book appointments quickly and easily.</p>
+    </div>
+    <div class="feature">
+      <h2>Reliable Communication</h2>
+      <p>Stay connected with real-time updates and notifications.</p>
+    </div>
+    <div class="feature">
+      <h2>Enhanced Efficiency</h2>
+      <p>Reduce administrative burdens and focus on providing quality care.</p>
+    </div>
+  </section>
+
+  <!-- Call-to-Action Section -->
+  <section class="cta">
+    <h2>Ready to Simplify Your Scheduling?</h2>
+    <a href="/about" class="btn-secondary">Learn More</a>
+  </section>
+</body>
+</html>
+  

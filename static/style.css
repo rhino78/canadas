@@ -183,12 +183,162 @@ h2 {
   border-bottom: none;
 }
 
-/* Form styling */
-form {
+/* Hero Section */
+.hero {
+  background: linear-gradient(135deg, #007bff, #00a86b); /* Blue and Green Gradient */
+  color: #fff;
+  text-align: center;
+  padding: 4em 2em;
+  border-radius: 8px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2em;
+}
+
+.hero h1 {
+  font-size: 2.5em;
+  margin-bottom: 0.5em;
+}
+
+.hero p {
+  font-size: 1.2em;
+  margin-bottom: 1em;
+}
+
+.hero .btn-primary {
+  display: inline-block;
+  background-color: #ffb347;
+  color: #fff;
+  padding: 0.8em 1.5em;
+  border-radius: 4px;
+  font-size: 1em;
+  text-decoration: none;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.hero .btn-primary:hover {
+  background-color: #ff9b00;
+  color: #fff;
+}
+
+/* Features Section */
+.features {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 2em;
+  padding: 2em;
+  text-align: center;
+  background-color: #f9fafb;
 }
+
+.features .feature {
+  background: #fff;
+  padding: 1.5em;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-left: 4px solid #00a86b;
+}
+
+.features h2 {
+  font-size: 1.5em;
+  color: #007bff;
+  margin-bottom: 0.5em;
+}
+
+.features p {
+  font-size: 1em;
+  color: #555;
+}
+
+/* Call-to-Action Section */
+.cta {
+  text-align: center;
+  background-color: #ffb347;
+  color: #fff;
+  padding: 3em 2em;
+  border-radius: 8px;
+}
+
+.cta h2 {
+  font-size: 1.8em;
+  margin-bottom: 1em;
+}
+
+.cta .btn-secondary {
+  display: inline-block;
+  background-color: #00a86b;
+  color: #fff;
+  padding: 0.8em 1.5em;
+  border-radius: 4px;
+  font-size: 1em;
+  text-decoration: none;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.cta .btn-secondary:hover {
+  background-color: #007bff;
+  color: #fff;
+}
+
+/* Multistep Form */
+form {
+  max-width: 500px;
+  margin: 2em auto;
+  padding: 2em;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+form .step {
+  display: none;
+}
+
+form .step.active {
+  display: block;
+}
+
+form h2 {
+  font-size: 1.5em;
+  color: #007bff;
+  margin-bottom: 1em;
+}
+
+form label {
+  display: block;
+  margin-bottom: 0.5em;
+  font-weight: bold;
+  color: #333;
+}
+
+form input {
+  width: 100%;
+  padding: 0.8em;
+  margin-bottom: 1em;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1em;
+}
+
+form button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 0.8em 1.5em;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+form button:hover {
+  background-color: #0056b3;
+}
+
+/* old Form styling */
+/* form { */
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* gap: 15px; */
+/* } */
 
 label {
   text-align: left;
@@ -261,11 +411,6 @@ button {
 
 button:hover {
   background-color: #0056b3;
-}
-
-button[type="button"] {
-  background-color: #f0f2f5;
-  color: #333;
 }
 
 button[type="button"]:hover {
