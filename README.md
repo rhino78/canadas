@@ -1,4 +1,4 @@
-Hospital Scheduling App
+# Hospital Scheduling App
 Overview
 The Hospital Scheduling App is a user-friendly platform designed to streamline appointment scheduling for hospitals. It provides a seamless experience for patients, administrators, and medical staff to coordinate and manage surgeries and other healthcare appointments efficiently.
 
